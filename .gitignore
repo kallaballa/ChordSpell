@@ -4,5 +4,7 @@
 src/spell/chord_spell
 src/spell/*.dep
 src/spell/*.o
+chorddict.txt
+chordoverridedict.txt
 
 
