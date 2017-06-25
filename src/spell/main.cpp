@@ -71,6 +71,10 @@ int main(int argc, char** argv) {
   wstring line;
   std::set<wstring> chordDict;
   std::wifstream wifsChords(chordDictFile);
+  if(!wifsChords) {
+    std::cerr << "Missing chord dictionary" << std::endl;
+    exit(2);
+  }
 
   while (std::getline(wifsChords, line)) {
     if (!isBlankString(line)) {
@@ -81,7 +85,10 @@ int main(int argc, char** argv) {
 
   std::set<wstring> overrideDict;
   std::wifstream wifsOverride(overrideDictFile);
-
+  if(!wifsOverride) {
+    std::cerr << "Missing override chord dictionary" << std::endl;
+    exit(2);
+  }
   while (std::getline(wifsOverride, line)) {
     if (!isBlankString(line)) {
       overrideDict.insert(line);
@@ -90,8 +97,14 @@ int main(int argc, char** argv) {
   wifsOverride.close();
 
   std::wifstream wifsIn(inputFile);
+  if(!wifsIn) {
+    std::cerr << "Missing input file" << std::endl;
+    exit(2);
+  }
+
   long brokenScore = 0;
   long fixScore = 0;
+  long correctScore = 0;
 
   while (std::getline(wifsIn, line)) {
     if (isBlankString(line)) {
@@ -104,12 +117,14 @@ int main(int argc, char** argv) {
       const auto& result = overrideDict.find(line);
       if(result != overrideDict.end()) {
         std::wcout << line << std::endl;
+        ++correctScore;
         continue;
       }
     } else {
       const auto& result = chordDict.find(line);
       if(result != chordDict.end()) {
         std::wcout << line << std::endl;
+        ++correctScore;
         continue;
       }
     }
@@ -129,8 +144,25 @@ int main(int argc, char** argv) {
       std::cout << brokenChord << std::endl;
       ++fixScore;
     } else {
-      std::cerr << L"Can't fix: " << brokenChord << std::endl;
+      std::wcerr << L"Can't fix: " << line << std::endl;
       ++brokenScore;
     }
   }
+
+  std::wcerr << std::endl << L">> Statistic <<" << std::endl;
+
+  if(fixScore == 1)
+    std::wcerr << L"Fixed one chord" << std::endl;
+  else
+    std::wcerr << L"Fixed " << fixScore << L" chords" << std::endl;
+
+  if(brokenScore == 1)
+    std::wcerr << L"Couldn't fix one chord" << std::endl;
+  else
+    std::wcerr << L"Couldn't fix " << brokenScore << L" chords" << std::endl;
+
+  if(correctScore == 1)
+    std::wcerr << L"Found one correct chord" << std::endl;
+  else
+    std::wcerr << L"Found " << correctScore << L" correct chords" << std::endl;
 }
