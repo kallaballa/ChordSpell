@@ -1,0 +1,8 @@
+.cproject
+.project
+.settings/
+src/spell/chord_spell
+src/spell/*.dep
+src/spell/*.o
+
+
