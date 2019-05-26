@@ -14,6 +14,13 @@ Run 'src/spell/chord_spell --help' for more options.
 
 ## Example
 
-    $> echo "Am#" | chord_spell /dev/stdin
+    $> echo -e "Am#\nA#m\nbla\nCaj7" | src/spell/chord_spell /dev/stdin
     A#m
+    A#m
+    Can't fix: bla
+    CMaj7
 
+    >> Statistic <<
+    Fixed 2 chords
+    Couldn't fix one chord
+    Found one correct chord
