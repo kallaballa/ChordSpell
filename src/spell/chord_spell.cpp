@@ -1,4 +1,5 @@
 #include "chord_spell.hpp"
+#include <numeric>
 
 char *find_matches(const char * txt, int *bl) {
   int i, j;
@@ -174,7 +175,6 @@ string ChordSpell::fix(string chord) {
         min_swap_dist = swap_dist;
       }
     } else if (tolower(p[0]) == tolower(chord[0])) {
-      string::size_type pos = 0;
       string first;
       string second;
       if (p.size() < chord.size()) {
