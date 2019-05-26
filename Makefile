@@ -1,4 +1,4 @@
-CXX      := g++-5
+CXX      := g++
 CXXFLAGS := -fopenmp -fno-strict-aliasing -std=c++0x -pedantic -Wall
 LDFLAGS  := -fopenmp -L/opt/local/lib
 LIBS     := -lm -lboost_locale -lboost_filesystem
