@@ -65,6 +65,8 @@ double jaro_winker_distance(const char *t1, const char *t2) {
   } else
     cntTransposition = 0;
 
+  free(b1);
+  free(b2);
   free(t1Match);
   free(t2Match);
 
