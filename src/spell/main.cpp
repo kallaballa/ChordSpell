@@ -149,20 +149,7 @@ int main(int argc, char** argv) {
     }
   }
 
-  std::wcerr << std::endl << L">> Statistic <<" << std::endl;
-
-  if(fixScore == 1)
-    std::wcerr << L"Fixed one chord" << std::endl;
-  else
-    std::wcerr << L"Fixed " << fixScore << L" chords" << std::endl;
-
-  if(brokenScore == 1)
-    std::wcerr << L"Couldn't fix one chord" << std::endl;
-  else
-    std::wcerr << L"Couldn't fix " << brokenScore << L" chords" << std::endl;
-
-  if(correctScore == 1)
-    std::wcerr << L"Found one correct chord" << std::endl;
-  else
-    std::wcerr << L"Found " << correctScore << L" correct chords" << std::endl;
+  std::wcerr << L"Fixed Chords: " << fixScore << std::endl;
+  std::wcerr << L"Unfixable chords: " << brokenScore << std::endl;
+  std::wcerr << L"Correct Chords: " << correctScore << std::endl;
 }
