@@ -141,7 +141,7 @@ int main(int argc, char** argv) {
       brokenChord = spellChord.fix(brokenChord);
     }
     if(!brokenChord.empty()) {
-      std::cout << brokenChord << std::endl;
+      std::wcout << converter.from_bytes(brokenChord) << std::endl;
       ++fixScore;
     } else {
       std::wcerr << L"Can't fix: " << line << std::endl;
